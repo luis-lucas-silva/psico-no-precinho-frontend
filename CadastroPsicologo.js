@@ -1,4 +1,7 @@
 import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Paper from '@mui/material/Paper';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -16,8 +19,8 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
+import FormHelperText from '@mui/material/FormHelperText';
 import Select from '@mui/material/Select';
-import { styled } from '@mui/material/styles';
 
 const theme = createTheme(
   {
@@ -29,17 +32,20 @@ const theme = createTheme(
   }
 );
 
+export function MultilineTextFields() {
+  const [value, setValue] = React.useState('Controlled');
 
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  }
+}
 
-export default function CadastroPsicologo() {
+export default function CadastroCliente() {
   
   const [estado, setEstado] = React.useState('');
   const handleChange = (event) => {
     setEstado(event.target.value);
   };
-  const Input = styled('input')({
-    display: 'none',
-  });
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -50,101 +56,160 @@ export default function CadastroPsicologo() {
     });
   };
 
-
-
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box component="form" onSubmit={handleSubmit}
-          sx={{
-            bgcolor: '#FFFFFF',
-            borderRadius: '2%',
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            width: 1100,
-            height:850,
-            position: 'absolute', 
-            left: '50%', 
-            top: '40%',
-            transform: 'translate(-50%, -45%)',
-          }}
-        >
-          <Typography component="h1" variant="h5" sx={{color: '#0057B7', paddingTop:2}}>
+      <CssBaseline />
+
+      <AppBar
+      position="absolute"
+      color="default"
+      elevation={0}
+      sx={{
+        position: 'relative',
+        borderBottom: (t) => `1px solid ${t.palette.divider}`,
+      }}
+      >
+      </AppBar>
+
+      <Container component="main" maxWidth="md" sx={{ mb: 4 }}>
+        <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
+          <Typography component="h1" variant="h4" align="center" sx={{color: '#0057B7'}}>
             Cadastro
           </Typography>
-
-          
-          <label htmlFor="contained-button-file">
-            <Input accept="image/*" id="contained-button-file" multiple type="file" />
-            <Button variant="contained" component="span">
-              Adicionar Foto
-            </Button>
-          </label>
-          
-
-          <Grid container spacing={2} sx={{
-            paddingTop: 2,
-            paddingLeft: 3,
-            width: 1050,
-            height: 200,
-          }}>
+          <Grid container spacing={3}>
             
-            
-            <Grid xs={6} sx={{paddingTop: 2}}>
-            <TextField id="email" label="Email" variant="outlined" sx={{width:500}} />
-            </Grid>
-            
-            <Grid  xs={6} sx={{paddingTop: 2}}>
-            <TextField id="senha" label="Senha" variant="outlined" sx={{width:500}} />
-            </Grid>
-
-            <Grid  xs={6} sx={{paddingTop: 2}}>
-            <TextField id="nome" label="Nome" variant="outlined" sx={{width:500}} />
-            </Grid>
-
-            <Grid  xs={6} sx={{paddingTop: 2}}>
-            <TextField id="endereco" label="Endereço" variant="outlined" sx={{width:500}} />
-            </Grid>
-            
-            <Grid  xs={6} sx={{paddingTop: 2}}>
-            <TextField id="nascimento" label="Data de Nascimento" variant="outlined" sx={{width:500}} />
+            <Grid item xs={12} sm={6}>
+              <TextField
+                required
+                id="email"
+                name="email"
+                label="E-mail"
+                fullWidth
+                autoComplete="given-name"
+                variant="outlined"
+              />
             </Grid>
 
-            <Grid  xs={6} sx={{paddingTop: 2}}>
-            <TextField id="complemento" label="Complemento" variant="outlined" sx={{width:500}} />
-            </Grid>
-            
-            <Grid  xs={6} sx={{paddingTop: 2}}>
-            <TextField id="documento" label="CPF" variant="outlined" sx={{width:500}}/>
-            </Grid>
-
-            <Grid  xs={6} sx={{paddingTop: 2}}>
-            <TextField id="cidade" label="Cidade" variant="outlined" sx={{width:500}} />
-            </Grid>
-            
-            <Grid  xs={6} sx={{paddingTop: 2}}>
-            <TextField id="telefone" label="Telefone" variant="outlined" sx={{width:500}} />
+            <Grid item xs={12} sm={6}>
+              <TextField
+                required
+                id="password"
+                name="password"
+                label="Senha"
+                fullWidth
+                autoComplete="given-name"
+                variant="outlined"
+              />
             </Grid>
 
-            <Grid  xs={6} sx={{paddingTop: 2}}>
-            <TextField id="cep" label="CEP" variant="outlined" sx={{width:500}} />
+            <Grid item xs={12} sm={6}>
+              <TextField
+                required
+                id="nome"
+                name="nome"
+                label="Nome Completo"
+                fullWidth
+                autoComplete="given-name"
+                variant="outlined"
+              />
             </Grid>
 
-            <Grid xs={6} sx={{paddingTop: 2}}>
-             <FormControl component="fieldset">
-              <FormLabel component="legend">Gênero</FormLabel>
-              <RadioGroup row aria-label="genero" name="selecaogenero">
-                <FormControlLabel value="feminino" control={<Radio />} label="Feminino" />
-                <FormControlLabel value="masculino" control={<Radio />} label="Masculino" />
-              </RadioGroup>
-            </FormControl>
-            </Grid> 
-              
-            <Grid xs={6} sx={{paddingTop: 2}}>
-            <FormControl sx={{width:500}} >
+            <Grid item xs={12} sm={6}>
+              <TextField
+                required
+                id="address"
+                name="address"
+                label="Endereço"
+                fullWidth
+                autoComplete="given-name"
+                variant="outlined"
+              />
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              <TextField
+                required
+                id="birthdayDate"
+                name="birthdayDate"
+                label="Data de Nascimento"
+                fullWidth
+                autoComplete="given-name"
+                variant="outlined"
+              />
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              <TextField
+                required
+                id="complemento"
+                name="complemento"
+                label="Complemento"
+                fullWidth
+                autoComplete="given-name"
+                variant="outlined"
+              />
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              <TextField
+                required
+                id="document"
+                name="document"
+                label="Documento"
+                fullWidth
+                autoComplete="given-name"
+                variant="outlined"
+              />
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              <TextField
+                required
+                id="cidade"
+                name="cidade"
+                label="Cidade"
+                fullWidth
+                autoComplete="given-name"
+                variant="outlined"
+              />
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              <TextField
+                required
+                id="telefone"
+                name="telefone"
+                label="Telefone"
+                fullWidth
+                autoComplete="given-name"
+                variant="outlined"
+              />
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              <TextField
+                required
+                id="cep"
+                name="cep"
+                label="CEP"
+                fullWidth
+                autoComplete="given-name"
+                variant="outlined"
+              />
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              <FormControl component="fieldset">
+                <FormLabel component="legend">Gênero</FormLabel>
+                <RadioGroup row aria-label="genero" name="selecaogenero">
+                  <FormControlLabel value="feminino" control={<Radio />} label="Feminino" />
+                  <FormControlLabel value="masculino" control={<Radio />} label="Masculino" />
+                </RadioGroup>
+              </FormControl>
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              <FormControl fullWidth>
                 <InputLabel id="estado">Estado</InputLabel>
                 <Select
                   labelId="estadolabel"
@@ -156,75 +221,116 @@ export default function CadastroPsicologo() {
                   <MenuItem value="">
                     <em>...</em>
                   </MenuItem>
-                  <MenuItem value={"SP"}>SP</MenuItem>
-                  <MenuItem value={"RJ"}>RJ</MenuItem>
+                  <MenuItem value={"AC"}>AC</MenuItem>
+                  <MenuItem value={"AL"}>AL</MenuItem>
+                  <MenuItem value={"AM"}>AM</MenuItem>
+                  <MenuItem value={"AP"}>AP</MenuItem>
+                  <MenuItem value={"BA"}>BA</MenuItem>
+                  <MenuItem value={"CE"}>CE</MenuItem>
+                  <MenuItem value={"DF"}>DF</MenuItem>
+                  <MenuItem value={"ES"}>ES</MenuItem>
+                  <MenuItem value={"GO"}>GO</MenuItem>
+                  <MenuItem value={"MA"}>MA</MenuItem>
                   <MenuItem value={"MG"}>MG</MenuItem>
+                  <MenuItem value={"MS"}>MS</MenuItem>
+                  <MenuItem value={"MT"}>MT</MenuItem>
+                  <MenuItem value={"PA"}>PA</MenuItem>
+                  <MenuItem value={"PB"}>PB</MenuItem>
+                  <MenuItem value={"PE"}>PE</MenuItem>
+                  <MenuItem value={"PI"}>PI</MenuItem>
+                  <MenuItem value={"PR"}>PR</MenuItem>
+                  <MenuItem value={"RJ"}>RJ</MenuItem>
+                  <MenuItem value={"RN"}>RN</MenuItem>
+                  <MenuItem value={"RO"}>RO</MenuItem>
+                  <MenuItem value={"RR"}>RR</MenuItem>
+                  <MenuItem value={"RS"}>RS</MenuItem>
+                  <MenuItem value={"SC"}>SC</MenuItem>
+                  <MenuItem value={"SE"}>SE</MenuItem>
+                  <MenuItem value={"SP"}>SP</MenuItem>
+                  <MenuItem value={"TO"}>TO</MenuItem>
                 </Select>
                 </FormControl>
             </Grid>
 
-            <Grid xs={12} sx={{paddingTop: 2, color: '#0057B7'}}>
+            <Grid item xs={12} sm={12}>
               <hr/>
-             </Grid>
-
-            <Grid xs={5}>
-            </Grid>
-            
-            <Grid xs={4} sx={{color: '#0057B7'}}> 
-            Informações Profissionais
-            </Grid>  
-           
-            <Grid xs={3}>
-            </Grid> 
-
-            <Grid  xs={4} sx={{paddingTop: 2}}>
-            <TextField id="crp" label="CRP" variant="outlined" sx={{width:330}}/>
             </Grid>
 
-            <Grid  xs={4} sx={{paddingTop: 2}}>
-            <TextField id="valormin" label="Valor Mínimo" variant="outlined" sx={{width:330}} />
+            <Grid item xs={12} sm={12}>
+              <Typography component="h6" align="center" sx={{color: '#0057B7'}}>
+                Informações Profissionais
+              </Typography>
             </Grid>
 
-            <Grid  xs={4} sx={{paddingTop: 2}}>
-            <TextField id="valormax" label="Valor Máximo" variant="outlined" sx={{width:330}}/>
+            <Grid  item xs={12} sm={4}>
+              <TextField
+                required
+                id="crp"
+                name="crp"
+                label="CRP"
+                fullWidth
+                autoComplete="given-name"
+                variant="outlined"
+              />
             </Grid>
 
-            <Grid  xs={12} sx={{paddingTop: 2}}>
-            <TextField id="descrição" label="Escreva uma breve introdução sobre você e seu trabalho." variant="outlined" sx={{width:1015}}/>
+            <Grid  item xs={12} sm={4}>
+              <TextField
+                required
+                id="minValue"
+                name="minValue"
+                label="Valor Mínimo"
+                fullWidth
+                autoComplete="given-name"
+                variant="outlined"
+              />
             </Grid>
 
-             
-             <Grid xs={3}>
-             </Grid>
-
-                  <Grid xs={6} sx={{paddingTop: 5}}>
-                  <Button
-                      type="submit"
-                      variant="contained"
-                      sx={{bgcolor: '#0057B7', width:500}}
-                  >
-                    Entrar
-                  </Button>
-                  </Grid>
-
-            <Grid xs={3}>
+            <Grid  item xs={12} sm={4}>
+              <TextField
+                required
+                id="maxValue"
+                name="maxValue"
+                label="Valor Máximo"
+                fullWidth
+                autoComplete="given-name"
+                variant="outlined"
+              />
             </Grid>
 
-            <Grid xs={6}>
-             </Grid>
+            <Grid item xs={12} sm={12}>
+              <TextField
+                required
+                id="description"
+                name="description"
+                label="Escreva uma breve introdução sobre você e seu trabalho."
+                multiline
+                maxRows={4}
+                fullWidth
+                autoComplete="given-name"
+                variant="outlined"
+              />
+            </Grid>
 
-                  <Grid xs={3}>
-                  <Link href="http://localhost:3000/LoginPsicologo" underline="hover">
-                        {'Já possui uma conta? Entrar'}
-                  </Link>
-                  </Grid>
-                  
-            <Grid xs={3}>
+            <Grid item xs={12} sm={12} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <Button
+                variant="contained"
+                sx={{ mt: 3, ml: 1 }}
+              >
+                Cadastrar
+              </Button>
+            </Grid>
+
+            <Grid item xs={12} sm={12} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <Link href="http://localhost:3000/LoginPsicologo" underline="hover">
+                {'Já possui uma conta? Entrar'}
+              </Link>
             </Grid>
 
           </Grid>
-          </Box>
+        </Paper>
       </Container>
+
     </ThemeProvider>
   );
 }
