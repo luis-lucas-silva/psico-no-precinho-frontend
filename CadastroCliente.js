@@ -72,7 +72,7 @@ export default function CadastroCliente() {
       </AppBar>
 
       <Container component="main" maxWidth="md" sx={{ mb: 4 }}>
-        <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
+        <Paper variant="outlined" sx={{borderRadius: '2%', my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component="h1" variant="h4" align="center" sx={{color: '#0057B7'}}>
             Cadastro
           </Typography>
@@ -155,7 +155,7 @@ export default function CadastroCliente() {
                 required
                 id="document"
                 name="document"
-                label="Documento"
+                label="CPF"
                 fullWidth
                 autoComplete="given-name"
                 variant="outlined"

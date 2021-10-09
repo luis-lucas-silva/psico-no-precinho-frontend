@@ -9,6 +9,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { NoEncryption } from '@material-ui/icons';
+import { borderRadius } from '@mui/system';
 
 const theme = createTheme(
   {
@@ -74,16 +76,19 @@ export default function LoginCliente() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, bgcolor: '#0057B7'  }}
+              sx={{ mt: 3, mb: 2, bgcolor: '#0057B7'  }}
             >
               Entrar
-            </Button>      
-                  
-                  <Grid sx={{paddingLeft:10}}>
-                  <Link href="http://localhost:3000/CadastroCliente" underline="hover">
-                        {'Não possui uma conta? Cadastre-se'}
-                  </Link>
-                  </Grid>
+            </Button>
+            <Grid container>
+              <Grid item xs>
+               </Grid>
+              <Grid item>
+                <Link href="http://localhost:3000/CadastroCliente" variant="body2" sx={{color: '#0057B7'}}>
+                  {"Não possui uma conta? Cadastre-se"}
+                </Link>
+              </Grid>
+            </Grid>
           </Box>
         </Box>
         </Container>

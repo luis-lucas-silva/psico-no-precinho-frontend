@@ -9,6 +9,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { NoEncryption } from '@material-ui/icons';
+import { borderRadius } from '@mui/system';
 
 const theme = createTheme(
   {
@@ -92,11 +94,15 @@ export default function LoginPsicologo() {
             >
               Entrar
             </Button>
-            <Grid sx={{paddingLeft:10}}>
-                  <Link href="http://localhost:3000/CadastroPsicologo" underline="hover">
-                        {'Não possui uma conta? Cadastre-se'}
-                  </Link>
-                  </Grid>
+            <Grid container>
+              <Grid item xs>
+               </Grid>
+              <Grid item>
+                <Link href="http://localhost:3000/CadastroPsicologo" variant="body2" sx={{color: '#0057B7'}}>
+                  {"Não possui uma conta? Cadastre-se"}
+                </Link>
+              </Grid>
+            </Grid>
           </Box>
         </Box>
         </Container>
